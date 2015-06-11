@@ -231,6 +231,13 @@ public final class Clock extends AndroidNonvisibleComponent
     return instant.getTimeInMillis();
   }
 
+  @SimpleFunction(description = "An instant in time some milliseconds after the argument")
+  public static Calendar AddMillis(Calendar instant, int millis) {
+    Calendar newInstant = (Calendar) instant.clone();
+    Dates.DateAdd(newInstant, Calendar.MILLISECOND, millis);
+    return newInstant;
+  }
+
   @SimpleFunction(description = "An instant in time some seconds after the argument")
   public static Calendar AddSeconds(Calendar instant, int seconds) {
     Calendar newInstant = (Calendar) instant.clone();

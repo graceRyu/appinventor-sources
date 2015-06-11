@@ -32,6 +32,7 @@ public final class Dates {
   public static final int DATE_HOUR = Calendar.HOUR_OF_DAY;
   public static final int DATE_MINUTE = Calendar.MINUTE;
   public static final int DATE_SECOND = Calendar.SECOND;
+  public static final int DATE_MILLIS = Calendar.MILLISECOND;
 
   /**
    * Days of the week.
@@ -83,6 +84,7 @@ public final class Dates {
       case DATE_HOUR:
       case DATE_MINUTE:
       case DATE_SECOND:
+      case DATE_MILLIS:  
         date.add(intervalKind, interval);
         break;
     }
@@ -189,6 +191,49 @@ public final class Dates {
   @SimpleFunction
   public static int Hour(Calendar date) {
     return date.get(Calendar.HOUR_OF_DAY);
+  }
+
+  /**
+   * Returns the instant of the given date (used in DatePicker component)
+   *
+   * @param year year of the date
+   * @param month month of the date
+   * @param day day of the date
+   * @return  Calendar (instant in time)
+   */
+  @SimpleFunction
+  public static Calendar DateInstant(int year, int month, int day) {
+	  String year_str = String.valueOf(year);
+	  String month_str = String.valueOf(month);
+	  String day_str = String.valueOf(day);
+	  String date;
+	  if (month < 10)
+	     month_str = "0" + month_str;
+	  if (day < 10)
+		 day_str = "0" + day_str;
+	  date = month_str + "/" + day_str + "/" + year_str;
+	  return Dates.DateValue(date);
+  }
+
+  /**
+   * Returns the instant of the given time (used in TimePicker component)
+   *
+   * @param year year of the date
+   * @param month month of the date
+   * @param day day of the date
+   * @return  Calendar (instant in time)
+   */
+  @SimpleFunction
+  public static Calendar TimeInstant(int hour, int minute) {
+	  String hour_str = String.valueOf(hour);
+	  String minute_str = String.valueOf(minute);
+	  String time;
+	  if (hour < 10)
+	     hour_str = "0" + hour_str;
+	  if (minute < 10)
+		 minute_str = "0" + minute_str;
+	  time = hour_str + ":" + minute_str;
+	  return Dates.DateValue(time);
   }
 
   /**
