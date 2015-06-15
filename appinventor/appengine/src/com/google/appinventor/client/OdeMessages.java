@@ -3343,6 +3343,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String functionNameParams();
 
+  @DefaultMessage("time")
+  @Description("")
+  String timeParams();
+
+  @DefaultMessage("timeUnit")
+  @Description("")
+  String timeUnitParams();
+  
   @DefaultMessage("errorNumber")
   @Description("")
   String errorNumberParams();
@@ -4229,9 +4237,17 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetBackgroundPixelColorMethods();
 
+  @DefaultMessage("Compare")
+  @Description("")
+  String CompareMethods();
+
   @DefaultMessage("AddDays")
   @Description("")
   String AddDaysMethods();
+
+  @DefaultMessage("AddTime")
+  @Description("")
+  String AddTimeMethods();
 
   @DefaultMessage("AddHours")
   @Description("")

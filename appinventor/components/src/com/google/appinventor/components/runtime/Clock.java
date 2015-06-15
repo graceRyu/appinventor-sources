@@ -231,6 +231,13 @@ public final class Clock extends AndroidNonvisibleComponent
     return instant.getTimeInMillis();
   }
 
+  @SimpleFunction(description = "An instant in time some time after the argument")
+  public static Calendar AddTime(Calendar instant, int time) {
+    Calendar newInstant = (Calendar) instant.clone();
+    Dates.DateAdd(newInstant, Calendar.MILLISECOND, time);
+    return newInstant;
+  }
+
   @SimpleFunction(description = "An instant in time some seconds after the argument")
   public static Calendar AddSeconds(Calendar instant, int seconds) {
     Calendar newInstant = (Calendar) instant.clone();
@@ -288,8 +295,35 @@ public final class Clock extends AndroidNonvisibleComponent
    * @return  milliseconds
    */
   @SimpleFunction (description = "Milliseconds elapsed between instants")
-  public static long Duration(Calendar start, Calendar end) {
+  public static long Compare(Calendar start, Calendar end) {
     return end.getTimeInMillis() - start.getTimeInMillis();
+  }
+
+  /**
+   * Returns the milliseconds by which end follows start (+ or -)
+   *
+   * @param start beginning instant
+   * @param end ending instant
+   * @return  milliseconds
+   */
+  @SimpleFunction (description = "customized duration")
+  public static int Duration(int timeUnit, int number) {
+	  switch (timeUnit) {
+      default:
+        throw new IllegalArgumentException("illegal date/time interval kind in function Duration()");
+      case 0: //weeks
+    	return number*(60^2)*(10^3)*24*7;
+      case 1: //days
+        return number*(60^2)*(10^3)*24;
+      case 2: //hours
+    	return number*(60^2)*(10^3);
+      case 3: //minutes
+    	return number*60*(10^3);
+      case 4: //seconds
+    	return number*(10^3);
+	  case 5: //milliseconds
+        return number;
+      }
   }
 
   /**

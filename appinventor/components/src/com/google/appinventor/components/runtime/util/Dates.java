@@ -32,6 +32,8 @@ public final class Dates {
   public static final int DATE_HOUR = Calendar.HOUR_OF_DAY;
   public static final int DATE_MINUTE = Calendar.MINUTE;
   public static final int DATE_SECOND = Calendar.SECOND;
+  public static final int DATE_MILLISECOND = Calendar.MILLISECOND;
+
 
   /**
    * Days of the week.
@@ -83,6 +85,7 @@ public final class Dates {
       case DATE_HOUR:
       case DATE_MINUTE:
       case DATE_SECOND:
+      case DATE_MILLISECOND:
         date.add(intervalKind, interval);
         break;
     }
