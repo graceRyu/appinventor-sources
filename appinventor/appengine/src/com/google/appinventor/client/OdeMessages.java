@@ -3326,6 +3326,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("years")
   @Description("")
   String yearsParams();
+  
+  @DefaultMessage("duration")
+  @Description("")
+  String durationParams();  
 
   @DefaultMessage("InstantInTime")
   @Description("")
@@ -4245,9 +4249,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AddDaysMethods();
 
-  @DefaultMessage("AddTime")
+  @DefaultMessage("AddDuration")
   @Description("")
-  String AddTimeMethods();
+  String AddDurationMethods();
 
   @DefaultMessage("AddHours")
   @Description("")
@@ -4277,9 +4281,29 @@ public interface OdeMessages extends Messages {
   @Description("")
   String DayOfMonthMethods();
 
-  @DefaultMessage("Duration")
+  @DefaultMessage("DurationInSeconds")
   @Description("")
-  String DurationMethods();
+  String DurationInSecondsMethods();
+
+  @DefaultMessage("DurationInMinutes")
+  @Description("")
+  String DurationInMinutesMethods();
+
+  @DefaultMessage("DurationInHours")
+  @Description("")
+  String DurationInHoursMethods();
+
+  @DefaultMessage("DurationInDays")
+  @Description("")
+  String DurationInDaysMethods();
+
+  @DefaultMessage("DurationInWeeks")
+  @Description("")
+  String DurationInWeeksMethods();
+
+  @DefaultMessage("MakeDuration")
+  @Description("")
+  String MakeDurationMethods();
 
   @DefaultMessage("FormatDate")
   @Description("")

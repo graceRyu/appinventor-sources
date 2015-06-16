@@ -231,10 +231,10 @@ public final class Clock extends AndroidNonvisibleComponent
     return instant.getTimeInMillis();
   }
 
-  @SimpleFunction(description = "An instant in time some time after the argument")
-  public static Calendar AddTime(Calendar instant, int time) {
+  @SimpleFunction(description = "An instant in time some duration after the argument")
+  public static Calendar AddDuration(Calendar instant, long duration) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.MILLISECOND, time);
+    Dates.DateAddInMillis(newInstant, duration);
     return newInstant;
   }
 
@@ -294,36 +294,91 @@ public final class Clock extends AndroidNonvisibleComponent
    * @param end ending instant
    * @return  milliseconds
    */
-  @SimpleFunction (description = "Milliseconds elapsed between instants")
+  @SimpleFunction (description = "minutes elapsed between instants")
   public static long Compare(Calendar start, Calendar end) {
-    return end.getTimeInMillis() - start.getTimeInMillis();
+	return end.getTimeInMillis() - start.getTimeInMillis();
   }
 
   /**
-   * Returns the milliseconds by which end follows start (+ or -)
+   * Returns the milliseconds of specified duration (timeUnit * number)
    *
-   * @param start beginning instant
-   * @param end ending instant
-   * @return  milliseconds
+   * @param timeUnit interval kind (needs to have a drop down menu)
+   * @param number the quantity of time 
+   * @return  duration in milliseconds
    */
   @SimpleFunction (description = "customized duration")
-  public static int Duration(int timeUnit, int number) {
+  public static long MakeDuration(int timeUnit, long number) {
 	  switch (timeUnit) {
       default:
         throw new IllegalArgumentException("illegal date/time interval kind in function Duration()");
       case 0: //weeks
-    	return number*(60^2)*(10^3)*24*7;
+    	return number*3600*1000*24*7;
       case 1: //days
-        return number*(60^2)*(10^3)*24;
+        return number*3600*1000*24;
       case 2: //hours
-    	return number*(60^2)*(10^3);
+    	return number*3600*1000;
       case 3: //minutes
-    	return number*60*(10^3);
+    	return number*60*1000;
       case 4: //seconds
-    	return number*(10^3);
+    	return number*1000;
 	  case 5: //milliseconds
         return number;
       }
+  }
+
+  /**
+   * Returns the duration converted from milliseconds to seconds.
+   *
+   * @param duration time interval to convert 
+   * @return  duration in seconds 
+   */
+  @SimpleFunction (description = "get duration in seconds")
+  public static long DurationInSeconds(long duration) {
+	  return Dates.DurationIn(duration, Calendar.SECOND);
+  }
+
+  /**
+   * Returns the duration converted from milliseconds to minutes.
+   *
+   * @param duration time interval to convert 
+   * @return  duration in minutes 
+   */
+  @SimpleFunction (description = "get duration in minutes")
+  public static long DurationInMinutes(long duration) {
+	  return Dates.DurationIn(duration, Calendar.MINUTE);
+  }
+
+  /**
+   * Returns the duration converted from milliseconds to hours.
+   *
+   * @param duration time interval to convert 
+   * @return  duration in hours 
+   */
+  @SimpleFunction (description = "get duration in hours")
+  public static long DurationInHours(long duration) {
+	  return Dates.DurationIn(duration, Calendar.HOUR);
+  }
+
+  /**
+   * Returns the duration converted from milliseconds to days.
+   *
+   * @param duration time interval to convert 
+   * @return  duration in days 
+   */
+  @SimpleFunction (description = "get duration in days")
+  public static long DurationInDays(long duration) {
+	  return Dates.DurationIn(duration, Calendar.DATE);
+  }
+
+  /**
+   * Returns the duration converted from milliseconds to weeks.
+   *
+   * @param duration time interval to convert 
+   * @return  duration in weeks 
+   */
+  @SimpleFunction (description = "get duration in weeks")
+  public static long DurationInWeeks(long duration) {
+	  return Dates.DurationIn(duration, Calendar.WEEK_OF_YEAR);
   }
 
   /**
