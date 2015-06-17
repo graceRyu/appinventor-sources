@@ -279,6 +279,10 @@ Blockly.Blocks.component_method = {
     if(!this.isGeneric) {
       container.setAttribute('instance_name', this.instanceName);//instance name not needed
     }
+    if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockMethodName(this.methodName)) {
+      var timeUnit = this.getFieldValue('TIME_UNIT');
+      container.setAttribute('timeUnit', timeUnit);
+    }
     return container;
   },
 
@@ -295,16 +299,29 @@ Blockly.Blocks.component_method = {
     this.setColour(Blockly.ComponentBlock.COLOUR_METHOD);
 
     this.componentDropDown = Blockly.ComponentBlock.createComponentDropDown(this);
+
     //for non-generic blocks, set the value of the component drop down
     if(!this.isGeneric) {
       this.componentDropDown.setValue(this.instanceName);
     }
 
+
+
+
     if(!this.isGeneric) {
-      this.appendDummyInput()
-        .appendField(Blockly.Msg.LANG_COMPONENT_BLOCK_METHOD_TITLE_CALL)
-        .appendField(this.componentDropDown, "COMPONENT_SELECTOR")
-        .appendField('.' + window.parent.BlocklyPanel_getLocalizedMethodName(this.getMethodTypeObject().name));
+      if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockMethodName(this.methodName)) {
+        var timeUnitDropDown = Blockly.ComponentBlock.createClockAddDropDown();
+        this.appendDummyInput()
+          .appendField(Blockly.Msg.LANG_COMPONENT_BLOCK_METHOD_TITLE_CALL)
+          .appendField(this.componentDropDown, "COMPONENT_SELECTOR")
+          .appendField('.Add')
+          .appendField(timeUnitDropDown, "TIME_UNIT");  
+      } else {    
+        this.appendDummyInput()
+          .appendField(Blockly.Msg.LANG_COMPONENT_BLOCK_METHOD_TITLE_CALL)
+          .appendField(this.componentDropDown, "COMPONENT_SELECTOR")
+          .appendField('.' + window.parent.BlocklyPanel_getLocalizedMethodName(this.getMethodTypeObject().name));
+      } 
       this.componentDropDown.setValue(this.instanceName);
     } else {
       this.appendDummyInput()
@@ -696,6 +713,20 @@ Blockly.Blocks.component_component_block = {
   }
 };
 
+Blockly.ComponentBlock.timeUnits = ["Weeks", "Days", "Hours", "Minutes", "Seconds", "Duration"];
+Blockly.ComponentBlock.timeUnitsMenu = 
+  [["Weeks", "Weeks"], 
+   ["Days", "Days"],
+   ["Hours", "Hours"],
+   ["Minutes", "Minutes"],
+   ["Seconds", "Seconds"],
+   ["Duration", "Duration"]
+   ];
+Blockly.ComponentBlock.clockMethodNames = ["AddWeeks", "AddDays", "AddHours", "AddMinutes", "AddSeconds", "AddDuration"];
+Blockly.ComponentBlock.isClockMethodName =  function  (name) {
+    return Blockly.ComponentBlock.clockMethodNames.indexOf(name) != -1; 
+};
+
 Blockly.ComponentBlock.createComponentDropDown = function(block){
   var componentDropDown = new Blockly.FieldDropdown([["",""]]);
   componentDropDown.block = block;
@@ -705,6 +736,16 @@ Blockly.ComponentBlock.createComponentDropDown = function(block){
       var oldValue = this.getValue();
       this.block.rename(oldValue, value);
     }
+  };
+  return componentDropDown;
+}
+
+Blockly.ComponentBlock.createClockAddDropDown = function(block){
+  var componentDropDown = new Blockly.FieldDropdown([["",""]]);
+  componentDropDown.block = block;
+  componentDropDown.menuGenerator_ = function(){ return Blockly.ComponentBlock.timeUnitsMenu; };
+  componentDropDown.changeHandler_ = function(value){
+    // Lyn thinks nothing special happens here.
   };
   return componentDropDown;
 }
