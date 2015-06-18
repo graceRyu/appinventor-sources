@@ -2850,6 +2850,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String YearProperties();
 
+  @DefaultMessage("Instant")
+  @Description("")
+  String InstantProperties();
+
   @DefaultMessage("LastMessage")
   @Description("")
   String LastMessageProperties();
@@ -4340,6 +4344,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Month")
   @Description("")
   String MonthMethods();
+  
+  @DefaultMessage("Instant")
+  @Description("")
+  String InstantMethods();
 
   @DefaultMessage("MonthName")
   @Description("")
