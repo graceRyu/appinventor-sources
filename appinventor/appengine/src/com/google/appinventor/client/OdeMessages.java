@@ -4245,10 +4245,6 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AddMinutesMethods();
 
-  @DefaultMessage("AddMillis")
-  @Description("")
-  String AddMillisMethods();
-
   @DefaultMessage("AddMonths")
   @Description("")
   String AddMonthsMethods();
