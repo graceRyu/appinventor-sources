@@ -232,58 +232,58 @@ public final class Clock extends AndroidNonvisibleComponent
   }
 
   @SimpleFunction(description = "An instant in time some duration after the argument")
-  public static Calendar AddDuration(Calendar instant, long duration) {
+  public static Calendar AddDuration(Calendar instant, long quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAddInMillis(newInstant, duration);
+    Dates.DateAddInMillis(newInstant, quantity);
     return newInstant;
   }
 
   @SimpleFunction(description = "An instant in time some seconds after the argument")
-  public static Calendar AddSeconds(Calendar instant, int seconds) {
+  public static Calendar AddSeconds(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.SECOND, seconds);
+    Dates.DateAdd(newInstant, Calendar.SECOND, quantity);
     return newInstant;
   }
 
   @SimpleFunction(description = "An instant in time some minutes after the argument")
-  public static Calendar AddMinutes(Calendar instant, int minutes) {
+  public static Calendar AddMinutes(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.MINUTE, minutes);
+    Dates.DateAdd(newInstant, Calendar.MINUTE, quantity);
     return newInstant;
   }
 
   @SimpleFunction(description = "An instant in time some hours after the argument")
-  public static Calendar AddHours(Calendar instant, int hours) {
+  public static Calendar AddHours(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.HOUR_OF_DAY, hours);
+    Dates.DateAdd(newInstant, Calendar.HOUR_OF_DAY, quantity);
     return newInstant;
   }
 
   @SimpleFunction(description = "An instant in time some days after the argument")
-  public static Calendar AddDays(Calendar instant, int days) {
+  public static Calendar AddDays(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.DATE, days);
+    Dates.DateAdd(newInstant, Calendar.DATE, quantity);
     return newInstant;
   }
 
   @SimpleFunction(description = "An instant in time some weeks after the argument")
-  public static Calendar AddWeeks(Calendar instant, int weeks) {
+  public static Calendar AddWeeks(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.WEEK_OF_YEAR, weeks);
+    Dates.DateAdd(newInstant, Calendar.WEEK_OF_YEAR, quantity);
     return newInstant;
  }
 
   @SimpleFunction(description = "An instant in time some months after the argument")
-  public static Calendar AddMonths(Calendar instant, int months) {
+  public static Calendar AddMonths(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.MONTH, months);
+    Dates.DateAdd(newInstant, Calendar.MONTH, quantity);
     return newInstant;
  }
 
   @SimpleFunction(description = "An instant in time some years after the argument")
-  public static Calendar AddYears(Calendar instant, int years) {
+  public static Calendar AddYears(Calendar instant, int quantity) {
     Calendar newInstant = (Calendar) instant.clone();
-    Dates.DateAdd(newInstant, Calendar.YEAR, years);
+    Dates.DateAdd(newInstant, Calendar.YEAR, quantity);
     return newInstant;
   }
 
@@ -295,7 +295,7 @@ public final class Clock extends AndroidNonvisibleComponent
    * @return  milliseconds
    */
   @SimpleFunction (description = "minutes elapsed between instants")
-  public static long Compare(Calendar start, Calendar end) {
+  public static long Duration(Calendar start, Calendar end) {
 	return end.getTimeInMillis() - start.getTimeInMillis();
   }
 
@@ -306,8 +306,8 @@ public final class Clock extends AndroidNonvisibleComponent
    * @param number the quantity of time 
    * @return  duration in milliseconds
    */
-  @SimpleFunction (description = "customized duration")
-  public static long MakeDuration(int timeUnit, long number) {
+  @SimpleFunction (description = "get a duration of timeUnit * number")
+  public static long GetDuration(int timeUnit, long number) {
 	  switch (timeUnit) {
       default:
         throw new IllegalArgumentException("illegal date/time interval kind in function Duration()");

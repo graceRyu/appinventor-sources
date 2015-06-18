@@ -3326,7 +3326,11 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("years")
   @Description("")
   String yearsParams();
-  
+
+  @DefaultMessage("quantity")
+  @Description("")
+  String quantityParams();
+
   @DefaultMessage("duration")
   @Description("")
   String durationParams();  
@@ -4241,9 +4245,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetBackgroundPixelColorMethods();
 
-  @DefaultMessage("Compare")
+  @DefaultMessage("Duration")
   @Description("")
-  String CompareMethods();
+  String DurationMethods();
 
   @DefaultMessage("AddDays")
   @Description("")
@@ -4300,10 +4304,6 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("DurationInWeeks")
   @Description("")
   String DurationInWeeksMethods();
-
-  @DefaultMessage("MakeDuration")
-  @Description("")
-  String MakeDurationMethods();
 
   @DefaultMessage("FormatDate")
   @Description("")
