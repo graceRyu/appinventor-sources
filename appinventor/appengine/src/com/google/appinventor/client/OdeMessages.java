@@ -5443,9 +5443,13 @@ public interface OdeMessages extends Messages {
   @Description("")
   String LaunchPickerMethods();
 
-  @DefaultMessage("SetDateToDisplay")
+  @DefaultMessage("SetDisplayDate")
   @Description("")
-  String SetDateToDisplayMethods();
+  String SetDisplayDateMethods();
+
+  @DefaultMessage("SetDisplayDateFromInstant")
+  @Description("")
+  String SetDisplayDateFromInstantMethods();
 
   @DefaultMessage("IncomingCallAnswered")
   @Description("")
@@ -5475,10 +5479,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String ThumbEnabledProperties();
 
-  @DefaultMessage("SetTimeToDisplay")
+  @DefaultMessage("SetDisplayTime")
   @Description("")
-  String SetTimeToDisplayMethods();
-
+  String SetDisplayTimeMethods();
+ 
+  @DefaultMessage("SetDisplayTimeFromInstant")
+  @Description("")
+  String SetDisplayTimeFromInstantMethods();
+  
   @DefaultMessage("XMLTextDecode")
   @Description("")
   String XMLTextDecodeMethods();

@@ -121,18 +121,36 @@ public class DatePicker extends ButtonBase {
 
   @SimpleFunction(description = "Allows the user to set the date to be displayed when the date picker opens.\n" +
     "Valid values for the month field are 1-12 and 1-31 for the day field.\n")
-  public void SetDateToDisplay(int year, int month, int day) {
+  public void SetDisplayDate(int year, int month, int day) {
     int jMonth = month - 1;
     try {
       GregorianCalendar cal = new GregorianCalendar(year, jMonth, day);
       cal.setLenient(false);
       cal.getTime();
     } catch (java.lang.IllegalArgumentException e) {
-      form.dispatchErrorOccurredEvent(this, "SetDateToDisplay", ErrorMessages.ERROR_ILLEGAL_DATE);
+      form.dispatchErrorOccurredEvent(this, "SetDisplayDate", ErrorMessages.ERROR_ILLEGAL_DATE);
     }
     date.updateDate(year, jMonth, day);
     instant = Dates.DateInstant(year, month, day);
     customDate = true;
+  }
+
+  @SimpleFunction(description = "Allows the user to set the date from the instant to be displayed when the date picker opens.")
+  public void SetDisplayDateFromInstant(Calendar instant) {
+	  int year = Dates.Year(instant);
+	  int month = Dates.Month(instant);
+	  int day = Dates.Day(instant);
+	  int jMonth = month - 1;
+	  try {
+	    GregorianCalendar cal = new GregorianCalendar(year, jMonth, day);
+	    cal.setLenient(false);
+	    cal.getTime();
+	  } catch (java.lang.IllegalArgumentException e) {
+	    form.dispatchErrorOccurredEvent(this, "SetDisplayDateFromInstant", ErrorMessages.ERROR_ILLEGAL_DATE);
+	  }
+	  date.updateDate(year, month, day);
+	  instant = Dates.DateInstant(year, month, day);
+	  customDate = true;
   }
 
   @SimpleFunction(description="Launches the DatePicker popup.")

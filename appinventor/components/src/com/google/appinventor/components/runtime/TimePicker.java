@@ -107,16 +107,25 @@ public class TimePicker extends ButtonBase {
   }
 
   @SimpleFunction(description="Set the time to be shown in the Time Picker popup. Current time is shown by default.")
-  public void SetTimeToDisplay(int hour, int minute) {
+  public void SetDisplayTime(int hour, int minute) {
     if ((hour < 0) || (hour > 23)) {
-      form.dispatchErrorOccurredEvent(this, "SetTimeToDisplay", ErrorMessages.ERROR_ILLEGAL_HOUR);
+      form.dispatchErrorOccurredEvent(this, "SetDisplayTime", ErrorMessages.ERROR_ILLEGAL_HOUR);
     } else if ((minute < 0) || (minute > 59)) {
-      form.dispatchErrorOccurredEvent(this, "SetTimeToDisplay", ErrorMessages.ERROR_ILLEGAL_MINUTE);
+      form.dispatchErrorOccurredEvent(this, "SetDisplayTime", ErrorMessages.ERROR_ILLEGAL_MINUTE);
     } else {
       time.updateTime(hour, minute);
       instant = Dates.TimeInstant(hour, minute);
       customTime = true;
     }
+  }
+
+  @SimpleFunction(description="Set the time from the instant to be shown in the Time Picker popup. Current time is shown by default.")
+  public void SetDisplayTimeFromInstant(Calendar instant) {
+    int hour = Dates.Hour(instant);
+    int minute = Dates.Minute(instant);
+    time.updateTime(hour, minute);
+    instant = Dates.TimeInstant(hour, minute);
+    customTime = true; 
   }
 
   @SimpleFunction(description="Launches the TimePicker popup.")
