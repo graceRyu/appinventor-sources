@@ -540,55 +540,77 @@ none
   <h3> Methods </h3>
   <dl>
       <dt> <code> InstantInTime AddDays(InstantInTime instant, number days) </code> </dt>
-      <dd> An instant in time some days after the argument </dd>
+      <dd> Returns an instant in time some days after the argument </dd>
+      <dt> <code> InstantInTime AddDuration(InstantInTime instant, Duration duration) </code> </dt>
+      <dd> Returns an instant in time some time after the argument. Duration can be obtained from Clock.Duration() </dd>      
       <dt> <code> InstantInTime AddHours(InstantInTime instant, number hours) </code> </dt>
-      <dd> An instant in time some hours after the argument </dd>
+      <dd> Returns an instant in time some hours after the argument </dd>
       <dt> <code> InstantInTime AddMinutes(InstantInTime instant, number minutes) </code> </dt>
-      <dd> An instant in time some minutes after the argument </dd>
+      <dd> Returns an instant in time some minutes after the argument </dd>
       <dt> <code> InstantInTime AddMonths(InstantInTime instant, number months) </code> </dt>
-      <dd> An instant in time some months after the argument </dd>
+      <dd> Returns an instant in time some months after the argument </dd>
       <dt> <code> InstantInTime AddSeconds(InstantInTime instant, number seconds) </code> </dt>
-      <dd> An instant in time some seconds after the argument </dd>
+      <dd> Returns an instant in time some seconds after the argument </dd>
       <dt> <code> InstantInTime AddWeeks(InstantInTime instant, number weeks) </code> </dt>
-      <dd> An instant in time some weeks after the argument </dd>
+      <dd> Returns an instant in time some weeks after the argument </dd>
       <dt> <code> InstantInTime AddYears(InstantInTime instant, number years) </code> </dt>
-      <dd> An instant in time some years after the argument </dd>
+      <dd> Returns an instant in time some years after the argument </dd>
       <dt> <code> number DayOfMonth(InstantInTime instant) </code> </dt>
-      <dd> The day of the month </dd>
-      <dt> <code> number Duration(InstantInTime start, InstantInTime end) </code> </dt>
-      <dd> Milliseconds elapsed between instants </dd>
+      <dd> Returns the day of the month(1-31) from the instant</dd>
+      <dt> <code> Duration Duration(InstantInTime start, InstantInTime end) </code> </dt>
+      <dd> Returns duration, which is milliseconds elapsed between instants </dd>
+      <dt> <code> number DurationInSeconds(Duration duration) </code> </dt>
+      <dd> Converts and returns the duration into the number of seconds. TIPS: to get rid 
+      of fractional parts, use built-in round, celling, or floor blocks from
+      <a href="http://appinventor.mit.edu/explore/ai2/support/blocks/math.html#round">math</a>.</dd>
+      <dt> <code> number DurationInMinutes(Duration duration) </code> </dt>
+      <dd> Converts and returns the duration into the number of minutes. TIPS: to get rid 
+      of fractional parts, use built-in round, celling, or floor blocks from
+      <a href="http://appinventor.mit.edu/explore/ai2/support/blocks/math.html#round">math</a>.</dd>
+      <dt> <code> number DurationInHours(Duration duration) </code> </dt>
+      <dd> Converts and returns the duration into the number of hours. TIPS: to get rid 
+      of fractional parts, use built-in round, celling, or floor blocks from
+      <a href="http://appinventor.mit.edu/explore/ai2/support/blocks/math.html#round">math</a>.</dd>
+      <dt> <code> number DurationInDays(Duration duration) </code> </dt>
+      <dd> Converts and returns the duration into the number of days. TIPS: to get rid 
+      of fractional parts, use built-in round, celling, or floor blocks from
+      <a href="http://appinventor.mit.edu/explore/ai2/support/blocks/math.html#round">math</a>.</dd>
+      <dt> <code> number DurationInWeeks(Duration duration) </code> </dt>
+      <dd> Converts and returns the duration into the number of weeks. TIPS: to get rid 
+      of fractional parts, use built-in round, celling, or floor blocks from
+      <a href="http://appinventor.mit.edu/explore/ai2/support/blocks/math.html#round">math</a>.</dd>   
       <dt> <code> text FormatDate(InstantInTime instant) </code> </dt>
-      <dd> Text representing the date of an instant </dd>
+      <dd> Returns text representing the date of an instant </dd>
       <dt> <code> text FormatDateTime(InstantInTime instant) </code> </dt>
-      <dd> Text representing the date and time of an instant </dd>
+      <dd> Returns text representing the date and time of an instant </dd>
       <dt> <code> text FormatTime(InstantInTime instant) </code> </dt>
-      <dd> Text representing the time of an instant </dd>
+      <dd> Returns text representing the time of an instant </dd>
       <dt> <code> number GetMillis(InstantInTime instant) </code> </dt>
-      <dd> The instant in time measured as milliseconds since 1970. </dd>
+      <dd> Returns the instant in time measured as milliseconds since 1970. </dd>
       <dt> <code> number Hour(InstantInTime instant) </code> </dt>
-      <dd> The hour of the day </dd>
+      <dd> Returns the hour of the day(0-23) from the instant </dd>
       <dt> <code> InstantInTime MakeInstant(text from) </code> </dt>
-      <dd> An instant specified by MM/DD/YYYY hh:mm:ss or MM/DD/YYYY or hh:mm </dd>
+      <dd> Returns an instant specified by MM/DD/YYYY hh:mm:ss or MM/DD/YYYY or hh:mm. An example text input is "06/22/2015 12:18"</dd>
       <dt> <code> InstantInTime MakeInstantFromMillis(number millis) </code> </dt>
-      <dd> An instant in time specified by the milliseconds since 1970. </dd>
+      <dd> Returns an instant in time specified by the milliseconds since 1970. </dd>
       <dt> <code> number Minute(InstantInTime instant) </code> </dt>
-      <dd> The minute of the hour </dd>
+      <dd> Returns the minute of the hour (0-59) from the instant </dd>
       <dt> <code> number Month(InstantInTime instant) </code> </dt>
-      <dd> The month of the year represented as a number from 1 to 12) </dd>
+      <dd> Returns the month of the year (1-12) from the instant </dd>
       <dt> <code> text MonthName(InstantInTime instant) </code> </dt>
-      <dd> The name of the month </dd>
+      <dd> Returns the name of the month from the instant E.g. January, February, March...</dd>
       <dt> <code> InstantInTime Now() </code> </dt>
-      <dd> The current instant in time read from phone's clock </dd>
+      <dd> Returns an instant of the current time read from phone's clock </dd>
       <dt> <code> number Second(InstantInTime instant) </code> </dt>
-      <dd> The second of the minute </dd>
+      <dd> Returns the second of the minute (0-59) from the instant</dd>
       <dt> <code> number SystemTime() </code> </dt>
-      <dd> The phone's internal time </dd>
+      <dd> Returns the phone's internal time </dd>
       <dt> <code> number Weekday(InstantInTime instant) </code> </dt>
-      <dd> The day of the week represented as a number from 1 (Sunday) to 7 (Saturday) </dd>
+      <dd> Returns the day of the week represented as a number from 1 (Sunday) to 7 (Saturday) </dd>
       <dt> <code> text WeekdayName(InstantInTime instant) </code> </dt>
-      <dd> The name of the day of the week </dd>
+      <dd> Returns the name of the day of the week from the instant</dd>
       <dt> <code> number Year(InstantInTime instant) </code> </dt>
-      <dd> The year </dd>
+      <dd> Returns the year from the instant</dd>
   </dl>
 
 

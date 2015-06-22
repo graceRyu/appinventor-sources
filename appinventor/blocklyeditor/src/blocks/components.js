@@ -280,7 +280,7 @@ Blockly.Blocks.component_method = {
       container.setAttribute('instance_name', this.instanceName);//instance name not needed
     }
     if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockMethodName(this.methodName)) {
-      var AddtimeUnit = this.getFieldValue('TIME_UNIT');
+      var timeUnit = this.getFieldValue('TIME_UNIT');
       container.setAttribute('timeUnit', timeUnit);
     }
     return container;

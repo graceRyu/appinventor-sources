@@ -4309,6 +4309,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String DurationInWeeksMethods();
 
+  @DefaultMessage("GetDuration")
+  @Description("")
+  String GetDurationMethods();
+
   @DefaultMessage("FormatDate")
   @Description("")
   String FormatDateMethods();
