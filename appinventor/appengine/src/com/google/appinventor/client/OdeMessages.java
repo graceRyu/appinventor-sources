@@ -4761,10 +4761,6 @@ public interface OdeMessages extends Messages {
   @Description("")
   String StopFollowingMethods();
 
-  @DefaultMessage("GetDuration")
-  @Description("")
-  String GetDurationMethods();
-
   @DefaultMessage("SeekTo")
   @Description("")
   String SeekToMethods();

@@ -155,14 +155,12 @@ Blockly.Yail.methodHelper = function(methodBlock, name, methodName, generic) {
   } else {
     callPrefix = Blockly.Yail.YAIL_CALL_COMPONENT_METHOD; 
     name = methodBlock.getFieldValue("COMPONENT_SELECTOR");
-    // special case for handling Clock.Add and Clock.GetDuration
+    // special case for handling Clock.Add 
     timeUnit = methodBlock.getFieldValue("TIME_UNIT");
     if (timeUnit) {
       if (methodName == "Add") {
         name = name+timeUnit; // For example, AddDays
-      } else if (methoName == "GetDuration") {
-        name = name+timeUnit; // For example, GetDurationWeeks
-      }
+      } 
     }
   }
 

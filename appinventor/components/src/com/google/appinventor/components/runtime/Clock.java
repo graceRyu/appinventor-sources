@@ -300,33 +300,6 @@ public final class Clock extends AndroidNonvisibleComponent
   }
 
   /**
-   * Returns the milliseconds of specified duration (timeUnit * number)
-   *
-   * @param timeUnit interval kind (needs to have a drop down menu)
-   * @param number the quantity of time 
-   * @return  duration in milliseconds
-   */
-  @SimpleFunction (description = "get a duration of timeUnit * number")
-  public static long GetDuration(int timeUnit, long number) {
-	  switch (timeUnit) {
-      default:
-        throw new IllegalArgumentException("illegal date/time interval kind in function Duration()");
-      case 0: //weeks
-    	return number*3600*1000*24*7;
-      case 1: //days
-        return number*3600*1000*24;
-      case 2: //hours
-    	return number*3600*1000;
-      case 3: //minutes
-    	return number*60*1000;
-      case 4: //seconds
-    	return number*1000;
-	  case 5: //milliseconds
-        return number;
-      }
-  }
-
-  /**
    * Returns the duration converted from milliseconds to seconds.
    *
    * @param duration time interval to convert 

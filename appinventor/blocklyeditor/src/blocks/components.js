@@ -279,9 +279,9 @@ Blockly.Blocks.component_method = {
     if(!this.isGeneric) {
       container.setAttribute('instance_name', this.instanceName);//instance name not needed
     }
-    if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockAddMethodName(this.methodName)) {
-      var AddtimeUnit = this.getFieldValue('ADD_TIME_UNIT');
-      container.setAttribute('AddtimeUnit', AddtimeUnit);
+    if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockMethodName(this.methodName)) {
+      var AddtimeUnit = this.getFieldValue('TIME_UNIT');
+      container.setAttribute('timeUnit', timeUnit);
     }
     return container;
   },
@@ -309,37 +309,37 @@ Blockly.Blocks.component_method = {
 
 
     if(!this.isGeneric) {
-      if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockAddMethodName(this.methodName)) {
-        var AddtimeUnitDropDown = Blockly.ComponentBlock.createClockAddDropDown();
+      if (this.typeName == "Clock" && Blockly.ComponentBlock.isClockMethodName(this.methodName)) {
+        var timeUnitDropDown = Blockly.ComponentBlock.createClockAddDropDown();
         this.appendDummyInput()
           .appendField(Blockly.Msg.LANG_COMPONENT_BLOCK_METHOD_TITLE_CALL)
           .appendField(this.componentDropDown, "COMPONENT_SELECTOR")
           .appendField('.Add')
-          .appendField(AddtimeUnitDropDown, "ADD_TIME_UNIT"); 
+          .appendField(timeUnitDropDown, "TIME_UNIT"); 
         switch (this.methodName){
           case "AddYears":
-            this.setFieldValue('Years', "ADD_TIME_UNIT");
+            this.setFieldValue('Years', "TIME_UNIT");
             break;
           case "AddMonths":
-            this.setFieldValue('Months', "ADD_TIME_UNIT");
+            this.setFieldValue('Months', "TIME_UNIT");
             break;
           case "AddWeeks":
-            this.setFieldValue('Weeks', "ADD_TIME_UNIT");
+            this.setFieldValue('Weeks', "TIME_UNIT");
             break;
           case "AddDays":
-            this.setFieldValue('Days', "ADD_TIME_UNIT");
+            this.setFieldValue('Days', "TIME_UNIT");
             break;
           case "AddHours":
-            this.setFieldValue('Hours', "ADD_TIME_UNIT");
+            this.setFieldValue('Hours', "TIME_UNIT");
             break;
           case "AddMinutes":
-            this.setFieldValue('Minutes', "ADD_TIME_UNIT");
+            this.setFieldValue('Minutes', "TIME_UNIT");
             break;
           case "AddSeconds":
-            this.setFieldValue('Seconds', "ADD_TIME_UNIT");
+            this.setFieldValue('Seconds', "TIME_UNIT");
             break;
           case "AddDuration":
-            this.setFieldValue('Duration', "ADD_TIME_UNIT");
+            this.setFieldValue('Duration', "TIME_UNIT");
             break;
         }
       } else {    
@@ -739,8 +739,8 @@ Blockly.Blocks.component_component_block = {
   }
 };
 
-Blockly.ComponentBlock.AddtimeUnits = ["Years", "Months", "Weeks", "Days", "Hours", "Minutes", "Seconds", "Duration"];
-Blockly.ComponentBlock.AddtimeUnitsMenu = 
+Blockly.ComponentBlock.timeUnits = ["Years", "Months", "Weeks", "Days", "Hours", "Minutes", "Seconds", "Duration"];
+Blockly.ComponentBlock.timeUnitsMenu = 
   [["Years","Years"],
    ["Months", "Months"],
    ["Weeks", "Weeks"], 
@@ -751,9 +751,9 @@ Blockly.ComponentBlock.AddtimeUnitsMenu =
    ["Duration", "Duration"]
    ];
 
-Blockly.ComponentBlock.clockAddMethodNames = ["AddYears", "AddMonths","AddWeeks", "AddDays", "AddHours", "AddMinutes", "AddSeconds", "AddDuration"];
-Blockly.ComponentBlock.isClockAddMethodName =  function  (name) {
-    return Blockly.ComponentBlock.clockAddMethodNames.indexOf(name) != -1; 
+Blockly.ComponentBlock.clockMethodNames = ["AddYears", "AddMonths","AddWeeks", "AddDays", "AddHours", "AddMinutes", "AddSeconds", "AddDuration"];
+Blockly.ComponentBlock.isClockMethodName =  function  (name) {
+    return Blockly.ComponentBlock.clockMethodNames.indexOf(name) != -1; 
 };
 
 Blockly.ComponentBlock.createComponentDropDown = function(block){
@@ -772,7 +772,7 @@ Blockly.ComponentBlock.createComponentDropDown = function(block){
 Blockly.ComponentBlock.createClockAddDropDown = function(block){
   var componentDropDown = new Blockly.FieldDropdown([["",""]]);
   componentDropDown.block = block;
-  componentDropDown.menuGenerator_ = function(){ return Blockly.ComponentBlock.AddtimeUnitsMenu; };
+  componentDropDown.menuGenerator_ = function(){ return Blockly.ComponentBlock.timeUnitsMenu; };
   componentDropDown.changeHandler_ = function(value){
     // Lyn thinks nothing special happens here.
   };
