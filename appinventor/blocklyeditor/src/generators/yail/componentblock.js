@@ -158,8 +158,8 @@ Blockly.Yail.methodHelper = function(methodBlock, name, methodName, generic) {
     // special case for handling Clock.Add 
     timeUnit = methodBlock.getFieldValue("TIME_UNIT");
     if (timeUnit) {
-      if (methodName == "Add") {
-        name = name+timeUnit; // For example, AddDays
+      if (Blockly.ComponentBlock.isClockMethodName(methodName)) {
+        methodName = "Add"+timeUnit; // For example, AddDays
       } 
     }
   }
