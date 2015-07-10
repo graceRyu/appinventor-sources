@@ -2493,10 +2493,6 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Icon")
   @Description("")
   String IconProperties();
-  
-  @DefaultMessage("Instant")
-  @Description("")
-  String InstantProperties();
 
   @DefaultMessage("IgnoreSslErrors")
   @Description("")
