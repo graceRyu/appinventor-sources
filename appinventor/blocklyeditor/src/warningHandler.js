@@ -242,11 +242,23 @@ Blockly.WarningHandler.checkDropDownContainsValidValue = function(params){
   return false;
 }
 
+<<<<<<< HEAD
 // check if the component of the pasted block from the Backpack does not exist 
 // - originally written by @evanrthomas 
 // - added by @graceRyu   
 Blockly.WarningHandler.checkComponentNotExistsError = function() {
   var component_names = Blockly.ComponentInstances.getInstanceNames()
+=======
+// check if the component of the pasted block from the Backpack does not exist
+// - originally written by @evanrthomas
+// - added by @graceRyu
+
+Blockly.WarningHandler.checkComponentNotExistsError = function() {
+  if (this.isGeneric == true) { // Generic blocks take a component as an arg
+    return false;               // So we cannot check for existence
+  }
+  var component_names = Blockly.ComponentInstances.getInstanceNames();
+>>>>>>> mit-cml/master
   if (component_names.indexOf(this.instanceName) == -1) {
     var errorMessage = Blockly.ERROR_COMPONENT_DOES_NOT_EXIST;
     if(this.errorIcon){

@@ -317,7 +317,11 @@ Blockly.onMouseDown_ = function(e) {
     Blockly.Drawer.hide();
   }
 
+<<<<<<< HEAD
   //if backpack exists and clicked, open or close 
+=======
+  //if backpack exists and clicked, open or close
+>>>>>>> mit-cml/master
   if (Blockly.mainWorkspace.backpack && Blockly.mainWorkspace.backpack.mouseIsOver(e)) {
     Blockly.mainWorkspace.backpack.openBackpack();
   } else if(Blockly.mainWorkspace.backpack && Blockly.Backpack.flyout_.autoClose) {
@@ -518,6 +522,13 @@ Blockly.showContextMenu_ = function(e) {
         block = block.getNextBlock();
       }
     }
+
+    var exportOption = {enabled: true};
+    exportOption.text = Blockly.Msg.EXPORT_IMAGE;
+    exportOption.callback = function() {
+      Blockly.ExportBlocksImage.onclickExportBlocks(Blockly.mainWorkspace.getMetrics());
+    }
+    options.push(exportOption);
 
     // Option to collapse top blocks.
     var collapseOption = {enabled: hasExpandedBlocks};

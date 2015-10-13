@@ -71,7 +71,11 @@ Blockly.Backpack.prototype.WIDTH_ = 80;
  * @type {number}
  * @private
  */
+<<<<<<< HEAD
 Blockly.Backpack.prototype.BODY_HEIGHT_ = 75; 
+=======
+Blockly.Backpack.prototype.BODY_HEIGHT_ = 75;
+>>>>>>> mit-cml/master
 
 /**
  * Distance between backpack and top edge of workspace.
@@ -151,6 +155,7 @@ Blockly.Backpack.prototype.top_ = 0;
  * Starting x coordinate for snapping back
  * @type {number}
  * @private
+<<<<<<< HEAD
   
 Blockly.Backpack.prototype.startX = 0;
 
@@ -162,13 +167,33 @@ Blockly.Backpack.prototype.startX = 0;
 Blockly.Backpack.prototype.startY = 0;
 */
 
+=======
+ */
+
+// Commented out, not used
+// Blockly.Backpack.prototype.startX = 0;
+
+/**
+ * Starting y coordinate for snapping back
+ * @type {number}
+ * @private
+*/
+
+// Commented out, not used
+// Blockly.Backpack.prototype.startY = 0;
+
+>>>>>>> mit-cml/master
 /**
  * Create the backpack SVG elements.
  * @return {!Element} The backpack's SVG group.
  */
 Blockly.Backpack.prototype.createDom = function() {
   Blockly.Backpack.flyout_ = new Blockly.backpackFlyout();
+<<<<<<< HEAD
   // insert the flyout after the main workspace (except, there's no 
+=======
+  // insert the flyout after the main workspace (except, there's no
+>>>>>>> mit-cml/master
   // svg.insertAfter method, so we need to insert before the thing following
   // the main workspace. Neil Fraser says: this is "less hacky than it looks".
   var flyoutGroup = Blockly.Backpack.flyout_.createDom();
@@ -192,9 +217,15 @@ Blockly.Backpack.prototype.init = function() {
   Blockly.bindEvent_(window, 'resize', this, this.position_);
   Blockly.Backpack.flyout_.init(Blockly.mainWorkspace,
                               Blockly.getMainWorkspaceMetrics_,
+<<<<<<< HEAD
                               true /*withScrollbar*/); 
 
   // load files for sound effect 
+=======
+                              true /*withScrollbar*/);
+
+  // load files for sound effect
+>>>>>>> mit-cml/master
   Blockly.loadAudio_(['media/backpack.mp3', 'media/backpack.ogg', 'media/backpack.wav'], 'backpack');
 
   if (this.getBackpack() == undefined)
@@ -203,7 +234,11 @@ Blockly.Backpack.prototype.init = function() {
   var bp_contents = JSON.parse(this.getBackpack());
   var len = bp_contents.length;
 
+<<<<<<< HEAD
   if (len == 0) 
+=======
+  if (len == 0)
+>>>>>>> mit-cml/master
     this.shrink();
   else
     this.grow();
@@ -273,7 +308,11 @@ Blockly.Backpack.prototype.checkValidBlockTypes = function(block, arr) {
 
 /**
  *  Copy all blocks in the workspace to backpack
+<<<<<<< HEAD
  *  
+=======
+ *
+>>>>>>> mit-cml/master
  */
 Blockly.Backpack.prototype.addAllToBackpack = function() {
   var allBlocks = Blockly.mainWorkspace.getAllBlocks();
@@ -286,7 +325,11 @@ Blockly.Backpack.prototype.addAllToBackpack = function() {
 
 /**
  *  The backpack is an array containing 0 or more
+<<<<<<< HEAD
  *   blocks 
+=======
+ *   blocks
+>>>>>>> mit-cml/master
  */
 Blockly.Backpack.prototype.addToBackpack = function(block) {
   if (this.getBackpack() == undefined) {
@@ -314,7 +357,11 @@ Blockly.Backpack.prototype.addToBackpack = function(block) {
   this.grow();
   Blockly.playAudio('backpack');
 
+<<<<<<< HEAD
   // update the flyout when it's visible 
+=======
+  // update the flyout when it's visible
+>>>>>>> mit-cml/master
   if (Blockly.Backpack.flyout_.isVisible()) {
     this.isAdded = true;
     this.openBackpack();
@@ -361,7 +408,11 @@ Blockly.Backpack.prototype.openBackpack = function(){
       newBackpack[i] = dom;
     }
     Blockly.Backpack.flyout_.show(newBackpack);
+<<<<<<< HEAD
   }  
+=======
+  }
+>>>>>>> mit-cml/master
 };
 
 
@@ -519,7 +570,11 @@ Blockly.Backpack.prototype.shrink = function() {
  */
 Blockly.Backpack.prototype.clear = function() {
   if (Blockly.mainWorkspace.backpack.confirmClear()) {
+<<<<<<< HEAD
     this.setBackpack(JSON.stringify([])); 
+=======
+    this.setBackpack(JSON.stringify([]));
+>>>>>>> mit-cml/master
     this.shrink();
   }
 }
@@ -535,7 +590,11 @@ Blockly.Backpack.prototype.count = function() {
   if (this.getBackpack() == null)
     return 0;
   var bp_contents = JSON.parse(this.getBackpack());
+<<<<<<< HEAD
   return bp_contents.length;  
+=======
+  return bp_contents.length;
+>>>>>>> mit-cml/master
 }
 
 Blockly.Backpack.prototype.getBackpack = function() {

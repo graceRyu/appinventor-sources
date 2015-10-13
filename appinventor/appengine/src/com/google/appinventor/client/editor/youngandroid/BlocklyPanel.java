@@ -123,7 +123,11 @@ public class BlocklyPanel extends HTMLPanel {
 
   // Blockly backpack
   private static String backpack = "[]";
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> mit-cml/master
   // My form name
   private String formName;
 
@@ -236,6 +240,13 @@ public class BlocklyPanel extends HTMLPanel {
     return !componentOps.containsKey(formName);
   }
   
+  public static String getBackpack() {
+    return backpack;
+  }
+  public static void setBackpack(String bp_contents) {
+    backpack = bp_contents;
+  }
+
   public static String getBackpack() {
     return backpack;
   }
@@ -855,7 +866,11 @@ public class BlocklyPanel extends HTMLPanel {
         $entry(@com.google.appinventor.client.editor.youngandroid.BlocklyPanel::getLocalizedComponentType(Ljava/lang/String;));
     $wnd.BlocklyPanel_getBackpack =
       $entry(@com.google.appinventor.client.editor.youngandroid.BlocklyPanel::getBackpack());
+<<<<<<< HEAD
     $wnd.BlocklyPanel_setBackpack = 
+=======
+    $wnd.BlocklyPanel_setBackpack =
+>>>>>>> mit-cml/master
       $entry(@com.google.appinventor.client.editor.youngandroid.BlocklyPanel::setBackpack(Ljava/lang/String;));
   }-*/;
 
