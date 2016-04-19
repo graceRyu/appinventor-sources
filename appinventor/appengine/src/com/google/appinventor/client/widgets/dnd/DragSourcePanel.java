@@ -9,6 +9,7 @@ package com.google.appinventor.client.widgets.dnd;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+
 /**
  * A panel containing a single draggable widget.
  * <p>
@@ -21,15 +22,20 @@ import com.google.gwt.user.client.ui.Widget;
  *
  */
 public abstract class DragSourcePanel extends FocusPanel implements DragSource {
-
-  protected final DragSourceSupport dragSourceSupport;
-
-  /**
-   * Creates a new drag source panel.
-   */
-  public DragSourcePanel() {
-    // Listen for drag gestures on self
-    dragSourceSupport = new DragSourceSupport(this);
-    addMouseListener(dragSourceSupport);
-  }
+    
+    protected final DragSourceSupport dragSourceSupport;
+    
+    /**
+     * Creates a new drag source panel.
+     */
+    public DragSourcePanel() {
+        // Listen for drag gestures on self
+        dragSourceSupport = new DragSourceSupport(this);
+        addMouseListener(dragSourceSupport);
+        addTouchStartHandler(dragSourceSupport);
+        addTouchMoveHandler(dragSourceSupport);
+        addTouchEndHandler(dragSourceSupport);
+        addTouchCancelHandler(dragSourceSupport);
+        
+    }
 }
