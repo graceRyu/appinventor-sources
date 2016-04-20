@@ -368,6 +368,7 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         
         Widget src = (Widget) event.getSource();
         Touch touch = event.getTargetTouches().get(0);
+       //int x = touch.getPageX();
       //  int y = touch.getPageY();
         
         onMouseUp(src, dragX, dragY);
