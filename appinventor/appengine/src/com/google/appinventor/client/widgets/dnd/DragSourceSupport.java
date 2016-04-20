@@ -28,9 +28,6 @@ import com.google.gwt.user.client.Window;
 
 import com.google.gwt.dom.client.Touch;
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  * Provides support for dragging from a {@link DragSource}
  * (typically a widget) to a {@link DropTarget}.
@@ -256,8 +253,8 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
     @Override
     public void onMouseDown(Widget sender, int x, int y) {
         Window.alert("Hello World! - mouse");
+        
         OdeLog.wlog("received onMouseDown event when we thought the mouse was already down - mouse down");
-        System.out.println("mousedown");
         if (mouseIsDown) {
             OdeLog.wlog("received onMouseDown event when we thought the mouse was already down");
         }
@@ -294,9 +291,8 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         Widget src = (Widget) event.getSource();
         Touch touch = event.getTargetTouches().get(0);
         
-        int x = touch.getPageX();
-        int y = touch.getPageY();
-        
+        int x = touch.getRelativeX(event.getRelativeElement());
+        int y = touch.getRelativeY(event.getRelativeElement());
         
         onMouseDown(src, x, y);
     }
@@ -333,9 +329,8 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         
         Widget src = (Widget) event.getSource();
         Touch touch = event.getTargetTouches().get(0);
-        
-        int x = touch.getPageX();
-        int y = touch.getPageY();
+        int x = touch.getRelativeX(event.getRelativeElement());
+        int y = touch.getRelativeY(event.getRelativeElement());
         
         onMouseMove(src, x, y);
     }
@@ -370,12 +365,12 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
     @Override
     public void onTouchEnd(TouchEndEvent event) {
         Window.alert("Hello World! - touch end");
+        
         Widget src = (Widget) event.getSource();
         Touch touch = event.getTargetTouches().get(0);
+      //  int y = touch.getPageY();
         
-        int x = touch.getPageX();
-        int y = touch.getPageY();
-        onMouseUp(src, x, y);
+        onMouseUp(src, dragX, dragY);
     }
     
     @Override

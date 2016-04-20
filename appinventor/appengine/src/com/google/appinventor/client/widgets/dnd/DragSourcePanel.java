@@ -36,6 +36,5 @@ public abstract class DragSourcePanel extends FocusPanel implements DragSource {
         addTouchMoveHandler(dragSourceSupport);
         addTouchEndHandler(dragSourceSupport);
         addTouchCancelHandler(dragSourceSupport);
-        
     }
 }
