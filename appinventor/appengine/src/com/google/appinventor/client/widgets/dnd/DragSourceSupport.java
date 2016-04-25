@@ -17,14 +17,12 @@ import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.event.dom.client.TouchStartHandler;
 import com.google.gwt.event.dom.client.TouchMoveHandler;
-import com.google.gwt.event.dom.client.TouchStartEvent;
 import com.google.gwt.event.dom.client.TouchEndHandler;
+import com.google.gwt.event.dom.client.TouchCancelHandler;
+import com.google.gwt.event.dom.client.TouchStartEvent;
 import com.google.gwt.event.dom.client.TouchMoveEvent;
 import com.google.gwt.event.dom.client.TouchCancelEvent;
-import com.google.gwt.event.dom.client.TouchCancelHandler;
 import com.google.gwt.event.dom.client.TouchEndEvent;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.dom.client.Touch;
 
 /**
@@ -281,21 +279,6 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         });
     }
     
-    @Override
-    public void onTouchStart(TouchStartEvent event) {
-        Window.alert("Hello World! - touch start");
-        
-        //        int x = event.getTargetTouches().get(0).getRelativeX(event.getRelativeElement());
-        //        int y = event.getTargetTouches().get(0).getRelativeY(event.getRelativeElement());
-        Widget src = (Widget) event.getSource();
-        Touch touch = event.getTargetTouches().get(0);
-        
-        int x = touch.getRelativeX(event.getRelativeElement());
-        int y = touch.getRelativeY(event.getRelativeElement());
-        
-        onMouseDown(src, x, y);
-    }
-    
     // NOTE: At least in Firefox 2, if the user drags outside of the browser window,
     //       mouse-move (and even mouse-down) events will not be received until
     //       the user drags back inside the window. A workaround for this issue
@@ -322,18 +305,7 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
             dom.eventPreventDefaultOfCurrentEvent();
         }
     }
-    
-    @Override
-    public void onTouchMove(TouchMoveEvent event) {
-        
-        Widget src = (Widget) event.getSource();
-        Touch touch = event.getTargetTouches().get(0);
-        int x = touch.getRelativeX(event.getRelativeElement());
-        int y = touch.getRelativeY(event.getRelativeElement());
-        
-        onMouseMove(src, x, y);
-    }
-    
+
     @Override
     public void onMouseUp(Widget sender, int x, int y) {
         if (!mouseIsDown) {
@@ -358,17 +330,7 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         // Prevent default actions from being triggered
         dom.eventPreventDefaultOfCurrentEvent();
     }
-    
-    @Override
-    public void onTouchEnd(TouchEndEvent event) {
-        Window.alert("Hello World! - touch end");
-        
-        Widget src = (Widget) event.getSource();
-        Touch touch = event.getTargetTouches().get(0);
-        
-        onMouseUp(src, dragX, dragY);
-    }
-    
+
     @Override
     public void onMouseEnter(Widget sender) {
         if (dragInProgress) {
@@ -403,13 +365,7 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
             }
         }
     }
-    
-    @Override
-    public void onTouchCancel(TouchCancelEvent event) {
-        Widget src = (Widget) event.getSource();
-        onMouseLeave(src);
-    }
-    
+
     private static int manhattanDist(int x1, int y1, int x2, int y2) {
         return Math.abs(x1 - x2) + Math.abs(y1 - y2);
     }
@@ -429,6 +385,74 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         return dragWidgetPopup.getWidget();
     }
     
+  // Touch Handler Implementation
+
+  /**
+   * Call the equivalent mouse event handler for each touch event
+   */
+  @Override
+  public void onTouchStart(TouchStartEvent event) {
+    Widget src = (Widget) event.getSource();
+    Touch touch = event.getTargetTouches().get(0);  
+    int x = touch.getRelativeX(event.getRelativeElement());
+    int y = touch.getRelativeY(event.getRelativeElement());
+    onMouseDown(src, x, y);
+  }
+
+  @Override
+  public void onTouchMove(TouchMoveEvent event) {    
+    Widget src = (Widget) event.getSource();
+    Touch touch = event.getTargetTouches().get(0);
+    int x = touch.getRelativeX(event.getRelativeElement());
+    int y = touch.getRelativeY(event.getRelativeElement());
+    onMouseMove(src, x, y);
+  }
+
+  @Override
+  public void onTouchEnd(TouchEndEvent event) {
+    Widget src = (Widget) event.getSource();
+    onMouseUp(src, dragX, dragY);
+  }
+
+  @Override
+  public void onTouchCancel(TouchCancelEvent event) {
+    Widget src = (Widget) event.getSource();
+    onMouseLeave(src);
+  }
+
+  /**
+   * Call the equivalent mouse event handler for each touch event
+   */
+  @Override
+  public void onTouchStart(TouchStartEvent event) {
+    Widget src = (Widget) event.getSource();
+    Touch touch = event.getTargetTouches().get(0);  
+    int x = touch.getRelativeX(event.getRelativeElement());
+    int y = touch.getRelativeY(event.getRelativeElement());
+    onMouseDown(src, x, y);
+  }
+
+  @Override
+  public void onTouchMove(TouchMoveEvent event) {    
+    Widget src = (Widget) event.getSource();
+    Touch touch = event.getTargetTouches().get(0);
+    int x = touch.getRelativeX(event.getRelativeElement());
+    int y = touch.getRelativeY(event.getRelativeElement());
+    onMouseMove(src, x, y);
+  }
+
+  @Override
+  public void onTouchEnd(TouchEndEvent event) {
+    Widget src = (Widget) event.getSource();
+    onMouseUp(src, dragX, dragY);
+  }
+
+  @Override
+  public void onTouchCancel(TouchCancelEvent event) {
+    Widget src = (Widget) event.getSource();
+    onMouseLeave(src);
+  }
+
     // Drag handling
     
     private void onDragStart(Widget sender, int x, int y) {
