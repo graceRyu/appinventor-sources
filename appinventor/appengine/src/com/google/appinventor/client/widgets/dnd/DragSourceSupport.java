@@ -249,8 +249,6 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
     
     @Override
     public void onMouseDown(Widget sender, int x, int y) {
-        Window.alert("Hello World! - mouse");
-        
         OdeLog.wlog("received onMouseDown event when we thought the mouse was already down - mouse down");
         if (mouseIsDown) {
             OdeLog.wlog("received onMouseDown event when we thought the mouse was already down");
@@ -419,40 +417,7 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
     Widget src = (Widget) event.getSource();
     onMouseLeave(src);
   }
-
-  /**
-   * Call the equivalent mouse event handler for each touch event
-   */
-  @Override
-  public void onTouchStart(TouchStartEvent event) {
-    Widget src = (Widget) event.getSource();
-    Touch touch = event.getTargetTouches().get(0);  
-    int x = touch.getRelativeX(event.getRelativeElement());
-    int y = touch.getRelativeY(event.getRelativeElement());
-    onMouseDown(src, x, y);
-  }
-
-  @Override
-  public void onTouchMove(TouchMoveEvent event) {    
-    Widget src = (Widget) event.getSource();
-    Touch touch = event.getTargetTouches().get(0);
-    int x = touch.getRelativeX(event.getRelativeElement());
-    int y = touch.getRelativeY(event.getRelativeElement());
-    onMouseMove(src, x, y);
-  }
-
-  @Override
-  public void onTouchEnd(TouchEndEvent event) {
-    Widget src = (Widget) event.getSource();
-    onMouseUp(src, dragX, dragY);
-  }
-
-  @Override
-  public void onTouchCancel(TouchCancelEvent event) {
-    Widget src = (Widget) event.getSource();
-    onMouseLeave(src);
-  }
-
+  
     // Drag handling
     
     private void onDragStart(Widget sender, int x, int y) {
