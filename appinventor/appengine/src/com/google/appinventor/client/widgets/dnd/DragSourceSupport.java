@@ -25,7 +25,6 @@ import com.google.gwt.event.dom.client.TouchCancelHandler;
 import com.google.gwt.event.dom.client.TouchEndEvent;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
-
 import com.google.gwt.dom.client.Touch;
 
 /**
@@ -337,7 +336,6 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
     
     @Override
     public void onMouseUp(Widget sender, int x, int y) {
-        OdeLog.wlog("grace: mouse is up");
         if (!mouseIsDown) {
             OdeLog.wlog("received onMouseUp event when we thought the mouse was already up");
         }
@@ -361,15 +359,12 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         dom.eventPreventDefaultOfCurrentEvent();
     }
     
-    
     @Override
     public void onTouchEnd(TouchEndEvent event) {
         Window.alert("Hello World! - touch end");
         
         Widget src = (Widget) event.getSource();
         Touch touch = event.getTargetTouches().get(0);
-       //int x = touch.getPageX();
-      //  int y = touch.getPageY();
         
         onMouseUp(src, dragX, dragY);
     }
@@ -409,10 +404,8 @@ public final class DragSourceSupport implements MouseListener,TouchStartHandler,
         }
     }
     
-    
     @Override
     public void onTouchCancel(TouchCancelEvent event) {
-        OdeLog.wlog("Grace: on touch cancel");
         Widget src = (Widget) event.getSource();
         onMouseLeave(src);
     }
